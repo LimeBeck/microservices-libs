@@ -13,23 +13,25 @@ repositories {
     mavenCentral()
 }
 
+val commonArtifactIdPart = "utils-provider"
+val commonnamePart = "Dev.LimeBeck Utils Provider"
 kotlin {
     metadata {
         mavenPublication {
-            artifactId = "utils-common"
+            artifactId = commonArtifactIdPart
             pom {
-                name.set("Dev.LimeBeck Utils Common")
-                description.set("Kotlin metadata module for Dev.LimeBeck Utils Common library")
+                name.set(commonnamePart)
+                description.set("Kotlin metadata module for $commonnamePart library")
             }
         }
     }
 
     jvm {
         mavenPublication {
-            artifactId = "utils-common-jvm"
+            artifactId = "$commonArtifactIdPart-jvm"
             pom {
-                name.set("Dev.LimeBeck Utils Common library JVM")
-                description.set("Kotlin JVM module for Dev.LimeBeck Utils Common library")
+                name.set("$commonnamePart library JVM")
+                description.set("Kotlin JVM module for $commonnamePart library")
             }
         }
         compilations.all {
@@ -42,10 +44,10 @@ kotlin {
 
     js(IR) {
         mavenPublication {
-            artifactId = "utils-common-js"
+            artifactId = "$commonArtifactIdPart-js"
             pom {
-                name.set("Dev.LimeBeck Utils Common library JS")
-                description.set("Kotlin JS module for Dev.LimeBeck Utils Common library")
+                name.set("$commonnamePart library JS")
+                description.set("Kotlin JS module for $commonnamePart library")
             }
         }
         binaries.executable()
@@ -57,30 +59,30 @@ kotlin {
     val nativeTarget = when {
         hostOs == "Mac OS X" -> macosX64("native") {
             mavenPublication {
-                artifactId = "utils-common-native-macos"
+                artifactId = "$commonArtifactIdPart-native-macos"
                 pom {
-                    name.set("Dev.LimeBeck Utils Common library native-macos")
-                    description.set("Kotlin native-macos module for Dev.LimeBeck Utils Common library")
+                    name.set("$commonnamePart library native-macos")
+                    description.set("Kotlin native-macos module for $commonnamePart library")
                 }
             }
         }
 
         hostOs == "Linux" -> linuxX64("native") {
             mavenPublication {
-                artifactId = "utils-common-native-linux"
+                artifactId = "$commonArtifactIdPart-native-linux"
                 pom {
-                    name.set("Dev.LimeBeck Utils Common library native-linux")
-                    description.set("Kotlin native-linux module for Dev.LimeBeck Utils Common library")
+                    name.set("$commonnamePart library native-linux")
+                    description.set("Kotlin native-linux module for $commonnamePart library")
                 }
             }
         }
 
         isMingwX64 -> mingwX64("native") {
             mavenPublication {
-                artifactId = "utils-common-native-win"
+                artifactId = "$commonArtifactIdPart-native-win"
                 pom {
-                    name.set("Dev.LimeBeck Utils Common library native-win")
-                    description.set("Kotlin native-win module for Dev.LimeBeck Utils Common library")
+                    name.set("$commonnamePart library native-win")
+                    description.set("Kotlin native-win module for $commonnamePart library")
                 }
             }
         }
@@ -93,11 +95,13 @@ kotlin {
             dependencies {
                 implementation(libs.uuid)
                 implementation(libs.kotlin.datetime)
+                implementation(libs.kotlin.coroutines)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(project(":libs:multiplatform-test-utils"))
             }
         }
         val jvmMain by getting {
