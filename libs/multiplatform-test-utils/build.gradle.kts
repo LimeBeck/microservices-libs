@@ -93,7 +93,6 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.uuid)
                 implementation(libs.kotlin.datetime)
                 implementation(libs.kotlin.coroutines)
             }
@@ -105,7 +104,6 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                api(libs.slf4j)
             }
         }
         val jvmTest by getting {

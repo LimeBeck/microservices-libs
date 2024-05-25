@@ -1,81 +1,39 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    alias(libs.plugins.kotlin.multiplatform) apply false
-    alias(libs.plugins.kotlin.jvm) apply false
-    alias(libs.plugins.versions)
+    alias(libs.plugins.kotlin.jvm)
+    id("maven-publish")
+    id("signing")
+    alias(libs.plugins.dokka)
 }
 
+val libVersion: String by project
+group = "dev.limebeck"
+version = libVersion
 repositories {
     mavenCentral()
 }
 
-//import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-//
-//plugins {
-//    kotlin("multiplatform")
-//    id("java-library")
-//    id("maven-publish")
-//    id("signing")
-//    id("org.jetbrains.dokka") version "1.8.10"
-//    id("com.github.ben-manes.versions").version("0.44.0")
+dependencies {
+    implementation(kotlin("reflect"))
+    api(libs.otel.api)
+    api(libs.otel.sdk)
+    api(project(":libs:common"))
+    testImplementation(kotlin("test"))
+}
+
+tasks.test {
+    useJUnitPlatform()
+}
+
+sourceSets {
+    test {}
+}
+
+//val stubJavaDocJar by tasks.registering(Jar::class) {
+//    archiveClassifier.value("javadoc")
 //}
-//
-//val libVersion: String by project
-//group = "dev.limebeck"
-//version = libVersion
-//repositories {
-//    mavenCentral()
-//}
-//
-//val slf4jVersion: String by project
-//val logbackVersion: String by project
-//val kotlinCoroutinesVersion: String by project
-//val testContainersVersion: String by project
-//
-//dependencies {
-//    implementation(kotlin("reflect"))
-//    implementation("io.opentelemetry:opentelemetry-api:1.23.1")
-//    implementation("io.opentelemetry:opentelemetry-sdk:1.23.1")
-////    implementation("io.opentelemetry:opentelemetry-exporter-otlp:1.20.1")
-////    implementation("io.opentelemetry:opentelemetry-semconv:1.20.1-alpha")
-//    api("org.slf4j:slf4j-api:$slf4jVersion")
-//
-//    api("io.micrometer", "micrometer-core", "1.10.4")
-//
-//    implementation("com.zaxxer", "HikariCP", "5.0.1")
-//    implementation("org.flywaydb", "flyway-core", "9.15.1")
-//    implementation("org.postgresql", "postgresql", "42.5.4")
-//    api("org.jooq", "jooq", "3.17.8")
-//
-//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinCoroutinesVersion}") {
-//        version {
-//            strictly(kotlinCoroutinesVersion)
-//        }
-//    }
-//    testImplementation(kotlin("test"))
-//    testImplementation("ch.qos.logback:logback-classic:$logbackVersion")
-//
-//    testImplementation("com.h2database", "h2", "2.1.214")
-//    testImplementation("ch.qos.logback", "logback-classic", "1.3.0-alpha14")
-//    testImplementation("org.testcontainers:postgresql:$testContainersVersion")
-//    testImplementation("org.testcontainers:testcontainers:$testContainersVersion")
-//    testImplementation("org.testcontainers:junit-jupiter:$testContainersVersion")
-//}
-//
-//tasks.test {
-//    useJUnitPlatform()
-//}
-//
-//tasks.withType<KotlinCompile> {
-//    kotlinOptions.jvmTarget = "17"
-//}
-//
-//sourceSets {
-//    test {}
-//}
-//
-////val stubJavaDocJar by tasks.registering(Jar::class) {
-////    archiveClassifier.value("javadoc")
-////}
 //
 //tasks.register<Jar>("dokkaHtmlJar") {
 //    dependsOn(tasks.dokkaHtml)

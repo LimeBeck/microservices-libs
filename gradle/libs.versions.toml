@@ -4,6 +4,7 @@ serialization = "1.6.3"
 ktor = "2.3.10"
 dokka = "1.9.20"
 arrow = "1.2.4"
+otel = "1.38.0"
 
 [libraries]
 slf4j = { module = "org.slf4j:slf4j-api", version = "2.0.7" }
@@ -17,6 +18,10 @@ kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version =
 arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
 arrow-ksp = { module = "io.arrow-kt:arrow-optics-ksp-plugin", version.ref = "arrow" }
 arrow-optics = { module = "io.arrow-kt:arrow-optics", version.ref = "arrow" }
+atomic = { module = "org.jetbrains.kotlinx:atomicfu", version = "0.18.5" }
+
+otel-api = { module = "io.opentelemetry:opentelemetry-api", version.ref = "otel" }
+otel-sdk = { module = "io.opentelemetry:opentelemetry-sdk", version.ref = "otel" }
 
 [plugins]
 versions = { id = "com.github.ben-manes.versions", version = "0.51.0" }

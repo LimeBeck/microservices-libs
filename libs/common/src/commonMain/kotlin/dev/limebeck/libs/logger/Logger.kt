@@ -11,7 +11,7 @@ interface Logger {
     fun error(throwable: Throwable? = null, message: MessageProducer)
 }
 
-inline fun <reified T> T.logger() = logger(T::class.qualifiedName ?: T::class.simpleName!!)
-fun KClass<*>.logger() = logger(qualifiedName ?: simpleName!!)
+inline fun <reified T> T.logger() = logger(T::class.simpleName!!)
+fun KClass<*>.logger() = logger(simpleName!!)
 
 expect fun logger(tag: String): Logger

@@ -91,18 +91,23 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.uuid)
-                implementation(libs.kotlin.datetime)
+                api(libs.uuid)
+                api(libs.kotlin.datetime)
+                api(libs.kotlin.coroutines)
+                api(libs.atomic)
             }
         }
         val commonTest by getting {
             dependencies {
+                implementation(project(":libs:multiplatform-test-utils"))
                 implementation(kotlin("test"))
             }
         }
         val jvmMain by getting {
             dependencies {
                 api(libs.slf4j)
+                api(libs.otel.api)
+                api(libs.otel.sdk)
             }
         }
         val jvmTest by getting {
