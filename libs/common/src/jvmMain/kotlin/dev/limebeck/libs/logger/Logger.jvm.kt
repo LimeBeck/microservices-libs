@@ -1,4 +1,4 @@
-package dev.limebeck.logger
+package dev.limebeck.libs.logger
 
 import kotlin.reflect.KClass
 import org.slf4j.Logger as Slf4jLogger

@@ -1,5 +1,8 @@
 package dev.limebeck.logger
 
+import dev.limebeck.libs.logger.LogLevel
+import dev.limebeck.libs.logger.NaiveNativeLogger
+import dev.limebeck.libs.logger.logLevel
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

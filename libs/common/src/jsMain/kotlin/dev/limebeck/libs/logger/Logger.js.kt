@@ -1,4 +1,4 @@
-package dev.limebeck.logger
+package dev.limebeck.libs.logger
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant

@@ -1,4 +1,4 @@
-package dev.limebeck.logger
+package dev.limebeck.libs.logger
 
 import kotlin.reflect.KClass
 

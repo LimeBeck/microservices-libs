@@ -1,6 +1,6 @@
-package dev.limebeck.closeable
+package dev.limebeck.libs.closeable
 
-import dev.limebeck.logger.logger
+import dev.limebeck.libs.logger.logger
 
 
 typealias Callback = () -> Unit

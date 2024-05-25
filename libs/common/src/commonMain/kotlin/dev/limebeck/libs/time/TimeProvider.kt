@@ -1,14 +1,14 @@
 package dev.limebeck.libs.time
 
-import java.time.Duration
-import java.time.Instant
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
 
 interface TimeProvider {
     fun getCurrentTime(): Instant
 }
 
 object RealTimeProvider : TimeProvider {
-    override fun getCurrentTime(): Instant = Instant.now()
+    override fun getCurrentTime(): Instant = Clock.System.now()
 }
 
 class TimeProviderMock(initialTime: Instant) : TimeProvider {

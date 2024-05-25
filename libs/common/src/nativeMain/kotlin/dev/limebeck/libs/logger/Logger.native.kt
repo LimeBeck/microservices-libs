@@ -1,4 +1,4 @@
-package dev.limebeck.logger
+package dev.limebeck.libs.logger
 
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.toKString

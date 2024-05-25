@@ -1,7 +1,5 @@
 package dev.limebeck.libs.range
 
-import java.time.Instant
-
 data class Range<T>(
         val start: T?,
         val end: T?
