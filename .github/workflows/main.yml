@@ -37,7 +37,7 @@ jobs:
             ${{ runner.os }}-gradle
 
       - name: Build Dokka with Gradle
-        run: ./gradlew dokkaHtml
+        run: ./gradlew :dokkaHtmlMultiModule
 
       - name: Setup Pages
         uses: actions/configure-pages@v2
