@@ -25,10 +25,10 @@ atomic = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomic" }
 
 otel-api = { module = "io.opentelemetry:opentelemetry-api", version.ref = "otel" }
 otel-sdk = { module = "io.opentelemetry:opentelemetry-sdk", version.ref = "otel" }
-micrometer = { module = "io.micrometer:micrometer-core", version = "1.10.4" }
+micrometer = { module = "io.micrometer:micrometer-core", version = "1.13.2" }
 
 postgres = { module = "org.postgresql:postgresql", version = "42.7.3" }
-h2 = { module = "com.h2database:h2", version = "2.1.214" }
+h2 = { module = "com.h2database:h2", version = "2.2.224" }
 hikari = { module = "com.zaxxer:HikariCP", version = "5.1.0" }
 jooq = { module = "org.jooq:jooq", version = "3.19.10" }
 flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
