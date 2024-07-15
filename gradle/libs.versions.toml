@@ -4,7 +4,10 @@ serialization = "1.6.3"
 ktor = "2.3.10"
 dokka = "1.9.20"
 arrow = "1.2.4"
-otel = "1.38.0"
+otel = "1.40.0"
+atomic = "0.25.0"
+testcontainers = "1.19.8"
+flyway = "10.15.2"
 
 [libraries]
 slf4j = { module = "org.slf4j:slf4j-api", version = "2.0.7" }
@@ -18,10 +21,23 @@ kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version =
 arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
 arrow-ksp = { module = "io.arrow-kt:arrow-optics-ksp-plugin", version.ref = "arrow" }
 arrow-optics = { module = "io.arrow-kt:arrow-optics", version.ref = "arrow" }
-atomic = { module = "org.jetbrains.kotlinx:atomicfu", version = "0.18.5" }
+atomic = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomic" }
 
 otel-api = { module = "io.opentelemetry:opentelemetry-api", version.ref = "otel" }
 otel-sdk = { module = "io.opentelemetry:opentelemetry-sdk", version.ref = "otel" }
+micrometer = { module = "io.micrometer:micrometer-core", version = "1.10.4" }
+
+postgres = { module = "org.postgresql:postgresql", version = "42.7.3" }
+h2 = { module = "com.h2database:h2", version = "2.1.214" }
+hikari = { module = "com.zaxxer:HikariCP", version = "5.1.0" }
+jooq = { module = "org.jooq:jooq", version = "3.19.10" }
+flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
+flyway-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "flyway" }
+ktorm = { module = "org.ktorm:ktorm-core", version = "4.0.0" }
+
+testcontainers-postgres = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+testcontainers-core = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
+testcontainers-junit = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
 
 [plugins]
 versions = { id = "com.github.ben-manes.versions", version = "0.51.0" }
@@ -31,3 +47,4 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version = "2.0.0-RC3-1.0.20" }
+atomicfu = { id = "org.jetbrains.kotlinx.atomicfu", version.ref = "atomic" }

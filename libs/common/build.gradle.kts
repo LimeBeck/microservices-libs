@@ -3,6 +3,7 @@ plugins {
     id("maven-publish")
     id("signing")
     alias(libs.plugins.dokka)
+    alias(libs.plugins.atomicfu)
 //    alias(libs.plugins.ksp)
 }
 
@@ -108,6 +109,9 @@ kotlin {
                 api(libs.slf4j)
                 api(libs.otel.api)
                 api(libs.otel.sdk)
+                api(libs.hikari)
+                api(libs.postgres)
+                api(libs.micrometer)
             }
         }
         val jvmTest by getting {

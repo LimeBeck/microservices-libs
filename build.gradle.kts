@@ -26,41 +26,6 @@ repositories {
 //    mavenCentral()
 //}
 //
-//val slf4jVersion: String by project
-//val logbackVersion: String by project
-//val kotlinCoroutinesVersion: String by project
-//val testContainersVersion: String by project
-//
-//dependencies {
-//    implementation(kotlin("reflect"))
-//    implementation("io.opentelemetry:opentelemetry-api:1.23.1")
-//    implementation("io.opentelemetry:opentelemetry-sdk:1.23.1")
-////    implementation("io.opentelemetry:opentelemetry-exporter-otlp:1.20.1")
-////    implementation("io.opentelemetry:opentelemetry-semconv:1.20.1-alpha")
-//    api("org.slf4j:slf4j-api:$slf4jVersion")
-//
-//    api("io.micrometer", "micrometer-core", "1.10.4")
-//
-//    implementation("com.zaxxer", "HikariCP", "5.0.1")
-//    implementation("org.flywaydb", "flyway-core", "9.15.1")
-//    implementation("org.postgresql", "postgresql", "42.5.4")
-//    api("org.jooq", "jooq", "3.17.8")
-//
-//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinCoroutinesVersion}") {
-//        version {
-//            strictly(kotlinCoroutinesVersion)
-//        }
-//    }
-//    testImplementation(kotlin("test"))
-//    testImplementation("ch.qos.logback:logback-classic:$logbackVersion")
-//
-//    testImplementation("com.h2database", "h2", "2.1.214")
-//    testImplementation("ch.qos.logback", "logback-classic", "1.3.0-alpha14")
-//    testImplementation("org.testcontainers:postgresql:$testContainersVersion")
-//    testImplementation("org.testcontainers:testcontainers:$testContainersVersion")
-//    testImplementation("org.testcontainers:junit-jupiter:$testContainersVersion")
-//}
-//
 //tasks.test {
 //    useJUnitPlatform()
 //}
