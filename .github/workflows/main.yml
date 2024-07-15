@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload build dir
-          path: './build/dokka/html'
+          path: './build/dokka/htmlMultiModule'
 
       - name: Deploy to GitHub Pages
         id: deployment

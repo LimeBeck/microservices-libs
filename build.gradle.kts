@@ -1,11 +1,27 @@
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.versions)
+    alias(libs.plugins.dokka)
 }
 
 repositories {
     mavenCentral()
+}
+
+subprojects {
+    apply(plugin = "org.jetbrains.dokka")
+    repositories {
+        mavenCentral()
+    }
+    // configure all format tasks at once
+    tasks.withType<DokkaTaskPartial>().configureEach {
+        dokkaSourceSets.configureEach {
+            includes.from("README.MD")
+        }
+    }
 }
 
 //import org.jetbrains.kotlin.gradle.tasks.KotlinCompile

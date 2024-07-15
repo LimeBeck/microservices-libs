@@ -7,12 +7,13 @@ plugins {
 //    alias(libs.plugins.ksp)
 }
 
+tasks.dokkaHtmlPartial {
+    outputDirectory.set(layout.buildDirectory.dir("docs/partial"))
+}
+
 val libVersion: String by project
 group = "dev.limebeck"
 version = libVersion
-repositories {
-    mavenCentral()
-}
 
 kotlin {
     metadata {

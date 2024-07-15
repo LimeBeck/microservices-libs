@@ -8,8 +8,9 @@ plugins {
 val libVersion: String by project
 group = "dev.limebeck"
 version = libVersion
-repositories {
-    mavenCentral()
+
+tasks.dokkaHtmlPartial {
+    outputDirectory.set(layout.buildDirectory.dir("docs/partial"))
 }
 
 dependencies {
