@@ -1,9 +1,6 @@
 package dev.limebeck.libs.db.jooq
 
-import dev.limebeck.libs.db.DataSourceProvider
-import dev.limebeck.libs.db.PostgresDataSourceProvider
-import dev.limebeck.libs.db.Transaction
-import dev.limebeck.libs.db.TransactionWithDBConnection
+import dev.limebeck.libs.db.*
 import dev.limebeck.libs.errors.InvalidOperationException
 import dev.limebeck.libs.logger.logger
 import dev.limebeck.libs.scopes.Scope
@@ -17,14 +14,9 @@ import java.io.Closeable
 import java.sql.Connection
 import java.sql.Savepoint
 import java.util.concurrent.atomic.AtomicInteger
-import javax.sql.DataSource
 
 class JooqDatabaseServiceImpl(
-    dbUrl: String,
-    dbDriver: String,
-    dbUsername: String,
-    dbPassword: String,
-    dbMaxPoolSize: Int = 10,
+    configuration: DbConfiguration,
     dataSourceProvider: DataSourceProvider = PostgresDataSourceProvider,
     val alwaysRollback: Boolean = false,
     meterRegistry: MeterRegistry? = null //TODO: Replace with MetricsService
@@ -40,8 +32,7 @@ class JooqDatabaseServiceImpl(
         TRANSACTIONS_INNER_OPENED("transactions.inner.opened")
     }
 
-    private val dataSource: DataSource =
-        dataSourceProvider.getDataSource(dbUrl, dbDriver, dbUsername, dbPassword, dbMaxPoolSize)
+    private val dataSource = dataSourceProvider.getDataSource(configuration)
 
     private val rootTransactionsCounter = meterRegistry?.counter(Metrics.TRANSACTIONS_ROOT_COUNTER.value)
     private val openedRootTransactionsGauge =

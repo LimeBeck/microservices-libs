@@ -1,19 +1,11 @@
 package dev.limebeck.libs.db.flyway
 
-import dev.limebeck.libs.db.DataSourceProvider
-import dev.limebeck.libs.db.MigrationContext
-import dev.limebeck.libs.db.MigrationService
-import dev.limebeck.libs.db.PostgresDataSourceProvider
+import dev.limebeck.libs.db.*
 import dev.limebeck.libs.logger.logger
 import org.flywaydb.core.Flyway
-import javax.sql.DataSource
 
 class FlywayMigrationService(
-    dbUrl: String,
-    dbDriver: String,
-    dbUsername: String,
-    dbPassword: String,
-    dbMaxPoolSize: Int = 10,
+    configuration: DbConfiguration,
     dataSourceProvider: DataSourceProvider = PostgresDataSourceProvider,
     private val clean: Boolean = false,
     private val migrationContextCreator: (() -> MigrationContext)? = null,
@@ -22,8 +14,7 @@ class FlywayMigrationService(
         private val logger = FlywayMigrationService::class.logger()
     }
 
-    private val dataSource: DataSource =
-        dataSourceProvider.getDataSource(dbUrl, dbDriver, dbUsername, dbPassword, dbMaxPoolSize)
+    private val dataSource = dataSourceProvider.getDataSource(configuration)
 
     override fun migrate(configureContext: ((MigrationContext) -> Unit)?) {
         // Start the migration

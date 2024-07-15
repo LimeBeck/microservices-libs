@@ -2,12 +2,14 @@ package dev.limebeck.libs.db
 
 import javax.sql.DataSource
 
+data class DbConfiguration(
+    val dbUrl: String,
+    val dbDriver: String,
+    val dbUsername: String,
+    val dbPassword: String,
+    val dbMaxPoolSize: Int = 10
+)
+
 interface DataSourceProvider {
-    fun getDataSource(
-        dbUrl: String,
-        dbDriver: String,
-        dbUsername: String,
-        dbPassword: String,
-        dbMaxPoolSize: Int = 10
-    ): DataSource
+    fun getDataSource(configuration: DbConfiguration): DataSource
 }

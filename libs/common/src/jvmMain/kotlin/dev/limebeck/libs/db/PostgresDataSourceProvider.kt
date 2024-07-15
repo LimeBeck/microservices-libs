@@ -8,32 +8,29 @@ import javax.sql.DataSource
 
 object PostgresDataSourceProvider : DataSourceProvider {
     override fun getDataSource(
-        dbUrl: String,
-        dbDriver: String,
-        dbUsername: String,
-        dbPassword: String,
-        dbMaxPoolSize: Int
+        configuration: DbConfiguration
     ): DataSource {
-        return if(dbMaxPoolSize > 1){
+        return if (configuration.dbMaxPoolSize > 1) {
             val hikariConfig = HikariConfig().apply {
-                jdbcUrl = dbUrl
-                driverClassName = dbDriver
-                username = dbUsername
-                password = dbPassword
-                maximumPoolSize = dbMaxPoolSize
+                jdbcUrl = configuration.dbUrl
+                driverClassName = configuration.dbDriver
+                username = configuration.dbUsername
+                password = configuration.dbPassword
+                maximumPoolSize = configuration.dbMaxPoolSize
             }
 
             HikariDataSource(hikariConfig)
         } else {
-            when(dbDriver){
+            when (configuration.dbDriver) {
                 "org.postgresql.Driver" -> {
                     PGSimpleDataSource().apply {
-                        setUrl(dbUrl)
-                        user = dbUsername
-                        password = dbPassword
+                        setUrl(configuration.dbUrl)
+                        user = configuration.dbUsername
+                        password = configuration.dbPassword
                     }
                 }
-                else -> throw InvalidParameterException("<c60d1fbb> Incompatible dbDriver parameter '${dbDriver}. Allowed only 'org.postgresql.Driver'")
+
+                else -> throw InvalidParameterException("<c60d1fbb> Incompatible dbDriver parameter '${configuration.dbDriver}. Allowed only 'org.postgresql.Driver'")
             }
         }
     }

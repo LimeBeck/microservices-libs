@@ -1,3 +1,4 @@
+import dev.limebeck.libs.db.DbConfiguration
 import dev.limebeck.libs.db.flyway.FlywayMigrationService
 import dev.limebeck.libs.db.jooq.JooqDatabaseService
 import dev.limebeck.libs.db.jooq.JooqDatabaseServiceImpl
@@ -36,18 +37,18 @@ class DatabaseServiceTest {
         }
 
     private fun createInMemoryDataService(meterRegistry: MeterRegistry? = null): JooqDatabaseService {
-        val service = JooqDatabaseServiceImpl(
+        val dbConfiguration = DbConfiguration(
             dbUrl = "jdbc:h2:mem:test",
             dbUsername = "sa",
             dbPassword = "sa",
             dbDriver = "org.h2.Driver",
+        )
+        val service = JooqDatabaseServiceImpl(
+            configuration = dbConfiguration,
             meterRegistry = meterRegistry
         )
         val migrationService = FlywayMigrationService(
-            dbUrl = "jdbc:h2:mem:test",
-            dbUsername = "sa",
-            dbPassword = "sa",
-            dbDriver = "org.h2.Driver",
+            configuration = dbConfiguration,
             clean = true
         )
         migrationService.migrate()
@@ -55,20 +56,20 @@ class DatabaseServiceTest {
     }
 
     private fun createPostgresDataService(meterRegistry: MeterRegistry? = null): JooqDatabaseService {
-        val service = JooqDatabaseServiceImpl(
+        val dbConfiguration = DbConfiguration(
             dbUrl = postgres.jdbcUrl,
             dbUsername = postgres.username,
             dbPassword = postgres.password,
             dbDriver = "org.postgresql.Driver",
-            meterRegistry = meterRegistry,
             dbMaxPoolSize = 0,
+        )
+        val service = JooqDatabaseServiceImpl(
+            configuration = dbConfiguration,
+            meterRegistry = meterRegistry,
             alwaysRollback = false
         )
         val migrationService = FlywayMigrationService(
-            dbUrl = postgres.jdbcUrl,
-            dbUsername = postgres.username,
-            dbPassword = postgres.password,
-            dbDriver = "org.postgresql.Driver",
+            configuration = dbConfiguration,
             clean = true
         )
         migrationService.migrate()
@@ -253,7 +254,6 @@ class DatabaseServiceTest {
         databaseService.createSchema()
 
         with(TestTable) {
-
             databaseService.runWithTransaction { rootTransaction ->
                 databaseService.withDslContext(rootTransaction) { dsl ->
                     assertEquals(
