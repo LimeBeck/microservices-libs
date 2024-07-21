@@ -14,16 +14,14 @@ tasks.dokkaHtmlPartial {
 }
 
 dependencies {
-    implementation(kotlin("reflect"))
     api(project(":libs:common"))
-    api(libs.jooq)
+    api(libs.kafka.clients)
 
-    testImplementation(kotlin("test"))
-    testImplementation(project(":libs:database-jvm-flyway"))
-    testImplementation(libs.h2)
-    testImplementation(libs.testcontainers.postgres)
+    testImplementation(libs.testcontainers.kafka)
     testImplementation(libs.testcontainers.core)
     testImplementation(libs.testcontainers.junit)
+    testImplementation(project(":libs:multiplatform-test-utils"))
+    testImplementation(kotlin("test"))
 }
 
 tasks.test {

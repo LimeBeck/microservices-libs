@@ -5,6 +5,7 @@ import kotlinx.cinterop.toKString
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import platform.posix.getenv
+import kotlin.reflect.KClass
 
 actual fun logger(tag: String): Logger = NaiveNativeLogger(tag)
 
@@ -52,3 +53,6 @@ class NaiveNativeLogger(val tag: String, val writer: (String) -> Unit = ::printl
         }
     }
 }
+
+actual inline fun <reified T> T.logger() = logger(T::class.qualifiedName ?: T::class.simpleName!!)
+actual fun KClass<*>.logger() = logger(qualifiedName ?: simpleName!!)

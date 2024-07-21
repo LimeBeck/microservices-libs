@@ -2,6 +2,7 @@ package dev.limebeck.libs.logger
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
+import kotlin.reflect.KClass
 
 actual fun logger(tag: String): Logger = NaiveJsLogger(tag)
 
@@ -44,3 +45,6 @@ class NaiveJsLogger(val tag: String) : Logger {
         }
     }
 }
+
+actual inline fun <reified T> T.logger() = logger(T::class.simpleName!!)
+actual fun KClass<*>.logger()  = logger(simpleName!!)

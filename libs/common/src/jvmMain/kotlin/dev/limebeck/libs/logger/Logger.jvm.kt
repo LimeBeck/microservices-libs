@@ -34,3 +34,6 @@ class Slf4jLoggerWrapper(val logger: Slf4jLogger) : Logger {
         }
     }
 }
+
+actual inline fun <reified T> T.logger() = logger(T::class.qualifiedName ?: T::class.simpleName!!)
+actual fun KClass<*>.logger() = logger(qualifiedName ?: simpleName!!)

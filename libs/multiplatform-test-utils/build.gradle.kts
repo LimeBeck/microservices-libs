@@ -104,6 +104,7 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
+                implementation(libs.logback)
             }
         }
         val jvmTest by getting {

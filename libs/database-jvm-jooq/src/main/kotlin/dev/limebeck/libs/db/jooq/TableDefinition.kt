@@ -4,7 +4,6 @@ import org.jooq.Field
 import org.jooq.Name
 import org.jooq.Record
 import org.jooq.impl.DSL
-import java.sql.Timestamp
 import kotlin.reflect.KProperty
 import kotlin.reflect.full.isSubtypeOf
 import kotlin.reflect.full.memberProperties

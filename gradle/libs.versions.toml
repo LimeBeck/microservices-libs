@@ -8,6 +8,7 @@ otel = "1.40.0"
 atomic = "0.25.0"
 testcontainers = "1.19.8"
 flyway = "10.15.2"
+kafka = "3.7.1"
 
 [libraries]
 slf4j = { module = "org.slf4j:slf4j-api", version = "2.0.7" }
@@ -35,7 +36,11 @@ flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
 flyway-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "flyway" }
 ktorm = { module = "org.ktorm:ktorm-core", version = "4.0.0" }
 
+kafka-clients = { module = "org.apache.kafka:kafka-clients", version.ref = "kafka" }
+
+
 testcontainers-postgres = { module = "org.testcontainers:postgresql", version.ref = "testcontainers" }
+testcontainers-kafka = { module = "org.testcontainers:kafka", version.ref = "testcontainers" }
 testcontainers-core = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
 testcontainers-junit = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
 
