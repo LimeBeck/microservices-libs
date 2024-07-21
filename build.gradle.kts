@@ -18,9 +18,16 @@ subprojects {
     }
     // configure all format tasks at once
     tasks.withType<DokkaTaskPartial>().configureEach {
+        outputDirectory.set(layout.buildDirectory.dir("docs/partial"))
         dokkaSourceSets.configureEach {
             includes.from("README.MD")
         }
+    }
+}
+
+tasks.withType<DokkaTaskPartial>() {
+    dokkaSourceSets.configureEach {
+        includes.from("README.MD")
     }
 }
 

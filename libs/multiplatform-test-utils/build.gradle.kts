@@ -2,8 +2,6 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     id("maven-publish")
     id("signing")
-    alias(libs.plugins.dokka)
-//    alias(libs.plugins.ksp)
 }
 
 val libVersion: String by project

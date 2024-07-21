@@ -2,13 +2,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     id("maven-publish")
     id("signing")
-    alias(libs.plugins.dokka)
     alias(libs.plugins.atomicfu)
-//    alias(libs.plugins.ksp)
-}
-
-tasks.dokkaHtmlPartial {
-    outputDirectory.set(layout.buildDirectory.dir("docs/partial"))
 }
 
 val libVersion: String by project
