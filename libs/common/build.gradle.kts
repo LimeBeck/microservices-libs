@@ -1,18 +1,12 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    id("maven-publish")
-    id("signing")
     alias(libs.plugins.atomicfu)
 }
-
-val libVersion: String by project
-group = "dev.limebeck"
-version = libVersion
 
 kotlin {
     metadata {
         mavenPublication {
-            artifactId = "utils-common"
+            artifactId = "common"
             pom {
                 name.set("Dev.LimeBeck Utils Common")
                 description.set("Kotlin metadata module for Dev.LimeBeck Utils Common library")
@@ -22,7 +16,7 @@ kotlin {
 
     jvm {
         mavenPublication {
-            artifactId = "utils-common-jvm"
+            artifactId = "common-jvm"
             pom {
                 name.set("Dev.LimeBeck Utils Common library JVM")
                 description.set("Kotlin JVM module for Dev.LimeBeck Utils Common library")
@@ -38,7 +32,7 @@ kotlin {
 
     js(IR) {
         mavenPublication {
-            artifactId = "utils-common-js"
+            artifactId = "common-js"
             pom {
                 name.set("Dev.LimeBeck Utils Common library JS")
                 description.set("Kotlin JS module for Dev.LimeBeck Utils Common library")
@@ -53,7 +47,7 @@ kotlin {
     val nativeTarget = when {
         hostOs == "Mac OS X" -> macosX64("native") {
             mavenPublication {
-                artifactId = "utils-common-native-macos"
+                artifactId = "common-native-macos"
                 pom {
                     name.set("Dev.LimeBeck Utils Common library native-macos")
                     description.set("Kotlin native-macos module for Dev.LimeBeck Utils Common library")
@@ -63,7 +57,7 @@ kotlin {
 
         hostOs == "Linux" -> linuxX64("native") {
             mavenPublication {
-                artifactId = "utils-common-native-linux"
+                artifactId = "common-native-linux"
                 pom {
                     name.set("Dev.LimeBeck Utils Common library native-linux")
                     description.set("Kotlin native-linux module for Dev.LimeBeck Utils Common library")
@@ -73,7 +67,7 @@ kotlin {
 
         isMingwX64 -> mingwX64("native") {
             mavenPublication {
-                artifactId = "utils-common-native-win"
+                artifactId = "common-native-win"
                 pom {
                     name.set("Dev.LimeBeck Utils Common library native-win")
                     description.set("Kotlin native-win module for Dev.LimeBeck Utils Common library")

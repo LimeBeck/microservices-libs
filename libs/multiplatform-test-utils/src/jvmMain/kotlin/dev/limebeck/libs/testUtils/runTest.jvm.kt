@@ -1,4 +1,4 @@
-package dev.limebeck.testUtils
+package dev.limebeck.libs.testUtils
 
 import kotlinx.coroutines.runBlocking
 

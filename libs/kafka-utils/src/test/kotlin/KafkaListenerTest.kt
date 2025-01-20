@@ -1,7 +1,7 @@
 import dev.limebeck.libs.kafka.*
 import dev.limebeck.libs.logger.logger
-import dev.limebeck.testUtils.awaitAssertWithDelay
-import dev.limebeck.testUtils.runTest
+import dev.limebeck.libs.testUtils.awaitAssertWithDelay
+import dev.limebeck.libs.testUtils.runTest
 import kotlinx.atomicfu.atomic
 import org.apache.kafka.clients.admin.AdminClient
 import org.apache.kafka.clients.admin.KafkaAdminClient

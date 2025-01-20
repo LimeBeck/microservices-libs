@@ -1,18 +1,14 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    id("maven-publish")
-    id("signing")
 }
 
-val libVersion: String by project
-group = "dev.limebeck"
-version = libVersion
 repositories {
     mavenCentral()
 }
 
 val commonArtifactIdPart = "multiplatform-test-utils"
 val commonnamePart = "Dev.LimeBeck Multiplatform Test Utils"
+
 kotlin {
     metadata {
         mavenPublication {

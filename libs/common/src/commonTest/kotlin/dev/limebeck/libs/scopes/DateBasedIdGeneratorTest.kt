@@ -1,6 +1,6 @@
 package dev.limebeck.libs.scopes
 
-import dev.limebeck.testUtils.runTest
+import dev.limebeck.libs.testUtils.runTest
 import kotlin.test.Test
 
 class DateBasedIdGeneratorTest {

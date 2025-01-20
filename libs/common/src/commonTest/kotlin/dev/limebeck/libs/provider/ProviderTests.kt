@@ -1,7 +1,7 @@
 package dev.limebeck.libs.provider
 
-import dev.limebeck.testUtils.awaitAssertWithDelay
-import dev.limebeck.testUtils.runTest
+import dev.limebeck.libs.testUtils.awaitAssertWithDelay
+import dev.limebeck.libs.testUtils.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

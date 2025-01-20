@@ -1,12 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
-    id("maven-publish")
-    id("signing")
 }
-
-val libVersion: String by project
-group = "dev.limebeck"
-version = libVersion
 
 dependencies {
     api(project(":libs:common"))
