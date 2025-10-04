@@ -1,12 +1,11 @@
 import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import org.gradle.internal.declarativedsl.parsing.main
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.versions)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.dokka.javadoc) apply false
     alias(libs.plugins.publish)
 }
 
@@ -32,13 +31,6 @@ subprojects {
         mavenCentral()
     }
 
-    // configure all format tasks at once
-    tasks.withType<DokkaTaskPartial>().configureEach {
-        outputDirectory.set(layout.buildDirectory.dir("docs/partial"))
-        dokkaSourceSets.configureEach {
-            includes.from("README.MD")
-        }
-    }
 
     mavenPublishing {
         publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
@@ -70,8 +62,25 @@ subprojects {
     }
 }
 
-tasks.withType<DokkaTaskPartial> {
-    dokkaSourceSets.configureEach {
-        includes.from("README.MD")
+dokka {
+    moduleName.set("Microservices Libs")
+    this.
+    dokkaPublications.html {
+        suppressInheritedMembers.set(true)
+        failOnWarning.set(true)
     }
+    pluginsConfiguration.html {
+        footerMessage.set("(c) LimeBeck.Dev")
+    }
+}
+
+
+
+dependencies {
+    dokka(project(":libs:common"))
+    dokka(project(":libs:database-jvm-flyway"))
+    dokka(project(":libs:database-jvm-jooq"))
+    dokka(project(":libs:database-jvm-ktorm"))
+    dokka(project(":libs:kafka-utils"))
+    dokka(project(":libs:multiplatform-test-utils"))
 }
