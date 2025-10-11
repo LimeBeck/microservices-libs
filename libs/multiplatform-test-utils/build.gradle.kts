@@ -122,3 +122,9 @@ kotlin {
         }
     }
 }
+
+mavenPublishing {
+    pom {
+        name = commonnamePart
+    }
+}

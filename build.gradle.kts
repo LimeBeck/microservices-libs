@@ -1,6 +1,3 @@
-import com.vanniktech.maven.publish.SonatypeHost
-import org.gradle.internal.declarativedsl.parsing.main
-
 plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlin.jvm) apply false
@@ -31,9 +28,8 @@ subprojects {
         mavenCentral()
     }
 
-
     mavenPublishing {
-        publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+        publishToMavenCentral()
         signAllPublications()
 
         pom {
@@ -64,17 +60,20 @@ subprojects {
 
 dokka {
     moduleName.set("Microservices Libs")
-    this.
+
     dokkaPublications.html {
         suppressInheritedMembers.set(true)
         failOnWarning.set(true)
     }
+
+    dokkaSourceSets.configureEach {
+        includes.from("README.MD")
+    }
+
     pluginsConfiguration.html {
         footerMessage.set("(c) LimeBeck.Dev")
     }
 }
-
-
 
 dependencies {
     dokka(project(":libs:common"))

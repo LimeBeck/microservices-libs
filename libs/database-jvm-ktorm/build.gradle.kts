@@ -16,3 +16,9 @@ tasks.test {
 sourceSets {
     test {}
 }
+
+mavenPublishing {
+    pom {
+        name = "Dev.LimeBeck Utils Database Ktorm"
+    }
+}

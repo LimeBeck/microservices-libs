@@ -3,13 +3,15 @@ plugins {
     alias(libs.plugins.atomicfu)
 }
 
+val commonNamePart = "Dev.LimeBeck Utils Common"
+
 kotlin {
     metadata {
         mavenPublication {
             artifactId = "common"
             pom {
-                name.set("Dev.LimeBeck Utils Common")
-                description.set("Kotlin metadata module for Dev.LimeBeck Utils Common library")
+                name.set(commonNamePart)
+                description.set("Kotlin metadata module for $commonNamePart library")
             }
         }
     }
@@ -18,8 +20,8 @@ kotlin {
         mavenPublication {
             artifactId = "common-jvm"
             pom {
-                name.set("Dev.LimeBeck Utils Common library JVM")
-                description.set("Kotlin JVM module for Dev.LimeBeck Utils Common library")
+                name.set("$commonNamePart library JVM")
+                description.set("Kotlin JVM module for $commonNamePart library")
             }
         }
         compilations.all {
@@ -34,8 +36,8 @@ kotlin {
         mavenPublication {
             artifactId = "common-js"
             pom {
-                name.set("Dev.LimeBeck Utils Common library JS")
-                description.set("Kotlin JS module for Dev.LimeBeck Utils Common library")
+                name.set("$commonNamePart library JS")
+                description.set("Kotlin JS module for $commonNamePart library")
             }
         }
         binaries.executable()
@@ -49,8 +51,8 @@ kotlin {
             mavenPublication {
                 artifactId = "common-native-macos"
                 pom {
-                    name.set("Dev.LimeBeck Utils Common library native-macos")
-                    description.set("Kotlin native-macos module for Dev.LimeBeck Utils Common library")
+                    name.set("$commonNamePart library native-macos")
+                    description.set("Kotlin native-macos module for $commonNamePart library")
                 }
             }
         }
@@ -59,8 +61,8 @@ kotlin {
             mavenPublication {
                 artifactId = "common-native-linux"
                 pom {
-                    name.set("Dev.LimeBeck Utils Common library native-linux")
-                    description.set("Kotlin native-linux module for Dev.LimeBeck Utils Common library")
+                    name.set("$commonNamePart library native-linux")
+                    description.set("Kotlin native-linux module for $commonNamePart library")
                 }
             }
         }
@@ -69,8 +71,8 @@ kotlin {
             mavenPublication {
                 artifactId = "common-native-win"
                 pom {
-                    name.set("Dev.LimeBeck Utils Common library native-win")
-                    description.set("Kotlin native-win module for Dev.LimeBeck Utils Common library")
+                    name.set("$commonNamePart library native-win")
+                    description.set("Kotlin native-win module for $commonNamePart library")
                 }
             }
         }
@@ -122,5 +124,11 @@ kotlin {
             dependencies {
             }
         }
+    }
+}
+
+mavenPublishing {
+    pom {
+        name = commonNamePart
     }
 }
