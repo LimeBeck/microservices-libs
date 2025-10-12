@@ -9,6 +9,6 @@ import kotlinx.coroutines.CoroutineScope
  */
 interface ApplicationContext<TransactionType> : ScopeHolder, AutoCloseable {
     val coroutineScope: CoroutineScope
-    fun <T> withTransaction(block: suspend (transaction: Transaction<TransactionType>) -> T): T
-    suspend fun <T> withTransactionSuspend(block: suspend (transaction: Transaction<TransactionType>) -> T): T
+    fun <T> withTransaction(block: suspend (transaction: Transaction) -> T): T
+    suspend fun <T> withTransactionSuspend(block: suspend (transaction: Transaction) -> T): T
 }

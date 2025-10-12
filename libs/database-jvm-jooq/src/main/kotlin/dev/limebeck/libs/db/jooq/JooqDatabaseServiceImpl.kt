@@ -51,7 +51,7 @@ class JooqDatabaseServiceImpl(
         override val hasChildTransactions: Boolean
             get() = childTransactionsCounter.value > 0
 
-        override val parentTransaction: Transaction<Connection>?
+        override val parentTransaction: Transaction?
             get() = null
 
         override fun commit(scope: Scope) {
@@ -119,17 +119,17 @@ class JooqDatabaseServiceImpl(
         (dataSource as? Closeable)?.close()
     }
 
-    override fun <R> withDslContext(transaction: Transaction<Connection>, block: (DSLContext) -> R): R {
-        val connection = (transaction as TransactionWithDBConnection).connection
+    override fun <R> withDslContext(transaction: Transaction, block: (DSLContext) -> R): R {
+        val connection = (transaction as TransactionWithDBConnection<Connection>).connection
         val dialect = JDBCUtils.dialect(connection)
         return block(DSL.using(connection, dialect))
     }
 
-    override fun createTransaction(scope: Scope, parentTransaction: Transaction<Connection>?): Transaction<Connection> {
+    override fun createTransaction(scope: Scope, parentTransaction: Transaction?): Transaction {
         logger.debug { "<4fb7bf3c> $scope Start ${if (parentTransaction != null) "nested transaction" else "transaction"}" }
 
         return if (parentTransaction != null) {
-            val connection = (parentTransaction as TransactionWithDBConnection).connection
+            val connection = (parentTransaction as TransactionWithDBConnection<Connection>).connection
             innerTransactionsCounter?.increment()
             openedInnerTransactionsGauge?.incrementAndGet()
             DBNestedTransaction(scope, parentTransaction, connection, connection.setSavepoint())

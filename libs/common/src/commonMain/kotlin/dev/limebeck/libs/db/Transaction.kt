@@ -2,9 +2,9 @@ package dev.limebeck.libs.db
 
 import dev.limebeck.libs.scopes.Scope
 
-interface Transaction<T> : AutoCloseable {
+interface Transaction : AutoCloseable {
 
-    val parentTransaction: Transaction<T>?
+    val parentTransaction: Transaction?
     val hasChildTransactions: Boolean
 
     fun commit(scope: Scope)

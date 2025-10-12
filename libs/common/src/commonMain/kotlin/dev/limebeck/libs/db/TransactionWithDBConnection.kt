@@ -2,7 +2,7 @@ package dev.limebeck.libs.db
 
 import kotlinx.atomicfu.AtomicInt
 
-interface TransactionWithDBConnection<T : Any> : Transaction<T> {
+interface TransactionWithDBConnection<T : Any> : Transaction {
     val connection: T
 
     val childTransactionsCounter: AtomicInt
