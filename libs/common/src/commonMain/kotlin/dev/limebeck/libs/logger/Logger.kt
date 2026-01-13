@@ -5,6 +5,7 @@ import kotlin.reflect.KClass
 typealias MessageProducer = () -> String
 
 interface Logger {
+    fun trace(message: MessageProducer)
     fun debug(message: MessageProducer)
     fun info(message: MessageProducer)
     fun warn(message: MessageProducer)

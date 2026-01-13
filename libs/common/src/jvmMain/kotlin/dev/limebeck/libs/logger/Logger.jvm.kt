@@ -6,9 +6,19 @@ import org.slf4j.LoggerFactory as Slf4jLoggerFactory
 
 actual fun logger(tag: String): Logger = Slf4jLoggerWrapper(tag)
 
+actual var logLevel: LogLevel
+    get() = TODO("Not used in JVM platform")
+    set(value) {}
+
 class Slf4jLoggerWrapper(val logger: Slf4jLogger) : Logger {
     constructor(tag: String) : this(Slf4jLoggerFactory.getLogger(tag))
     constructor(clazz: KClass<*>) : this(Slf4jLoggerFactory.getLogger(clazz.java))
+
+    override fun trace(message: MessageProducer) {
+        if (logger.isTraceEnabled) {
+            logger.trace(message())
+        }
+    }
 
     override fun debug(message: MessageProducer) {
         if (logger.isDebugEnabled) {

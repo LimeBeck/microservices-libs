@@ -17,6 +17,7 @@ class LoggerTest {
         assertEquals(0, lines.size)
 
         logLevel = LogLevel.DEBUG
+        logger.trace { "trace" }
         logger.debug { "debug" }
         assertEquals(1, lines.size)
 

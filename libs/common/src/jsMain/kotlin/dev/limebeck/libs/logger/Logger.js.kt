@@ -1,50 +1,21 @@
 package dev.limebeck.libs.logger
 
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
 import kotlin.reflect.KClass
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 actual fun logger(tag: String): Logger = NaiveJsLogger(tag)
 
-enum class LogLevel {
-    DEBUG,
-    INFO,
-    WARN,
-    ERROR
-}
+actual var logLevel = LogLevel.INFO
 
-var logLevel = LogLevel.INFO
-
-class NaiveJsLogger(val tag: String) : Logger {
-    private fun log(level: LogLevel, msg: String, throwable: Throwable? = null) {
+class NaiveJsLogger(val tag: String) : NaiveLogger() {
+    @OptIn(ExperimentalTime::class)
+    override fun log(level: LogLevel, msg: String, throwable: Throwable?) {
         val now: Instant = Clock.System.now()
         console.log("$now [$level] ($tag): $msg]", throwable ?: undefined)
-    }
-
-    override fun debug(message: MessageProducer) {
-        if (logLevel >= LogLevel.DEBUG) {
-            log(LogLevel.DEBUG, message())
-        }
-    }
-
-    override fun info(message: MessageProducer) {
-        if (logLevel >= LogLevel.INFO) {
-            log(LogLevel.INFO, message())
-        }
-    }
-
-    override fun warn(message: MessageProducer) {
-        if (logLevel >= LogLevel.WARN) {
-            log(LogLevel.WARN, message())
-        }
-    }
-
-    override fun error(throwable: Throwable?, message: MessageProducer) {
-        if (logLevel >= LogLevel.ERROR) {
-            log(LogLevel.ERROR, message(), throwable)
-        }
     }
 }
 
 actual inline fun <reified T> T.logger() = logger(T::class.simpleName!!)
-actual fun KClass<*>.logger()  = logger(simpleName!!)
+actual fun KClass<*>.logger() = logger(simpleName!!)

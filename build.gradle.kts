@@ -21,7 +21,6 @@ subprojects {
     version = rootProject.version
 
     apply(plugin = "org.jetbrains.dokka")
-//    apply(plugin = "org.jetbrains.dokka-javadoc")
     apply(plugin = "com.vanniktech.maven.publish")
 
     repositories {
